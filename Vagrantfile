@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |vagrant|
-  vagrant.vm.define "coaching" do |config|
+  vagrant.vm.define "sic_web" do |config|
 
     # Inject code from outer FS (edit outside, run inside)
     # required by type: "nfs"
@@ -8,7 +8,7 @@ Vagrant.configure("2") do |vagrant|
 
     # Access app with outer browser
     # otherwise use rails s -b 0.0.0.0 and private ip
-    config.vm.network "forwarded_port", guest: 8080, host: 8080
+    config.vm.network "forwarded_port", guest: 3000, host: 3000
 
     config.vm.network "public_network", bridge: 'wlan0'
 
@@ -19,10 +19,10 @@ Vagrant.configure("2") do |vagrant|
       # http://www.vagrantbox.es/
       # Prepare with: wget -O ../trusty-vbox.box http://goo.gl/8wqNnb
       override.vm.box_url = "../trusty-vbox.box"
-      override.vm.box = "trusty-vbox"
-      vb.name = 'sic_web'
-      vb.memory = 1024
-      vb.cpus = 2
+      override.vm.box     = "trusty-vbox"
+      vb.name             = 'sic_web'
+      vb.memory           = 1024
+      vb.cpus             = 2
       vb.customize ['modifyvm', :id, "--natdnshostresolver1", "on"]
     end
   end
