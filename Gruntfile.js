@@ -47,6 +47,10 @@ module.exports = function (grunt) {
             gruntfile: {
                 files: ['Gruntfile.js']
             },
+            coffee: {
+                files: ['<%= config.app %>/scripts/{,*/}*.coffee'],
+                tasks: ['coffee:compile'],
+            },
             sass: {
                 files: ['<%= config.app %>/sass/{,*/}*.{scss,sass}'],
                 tasks: ['sass:server', 'autoprefixer']
@@ -55,6 +59,10 @@ module.exports = function (grunt) {
                 files: ['<%= config.app %>/styles/{,*/}*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer']
             },
+            scripts: {
+                files: ['<%= config.app %>/scripts/{,*/}*.js'],
+                tasks: ['newer:copy:scripts']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -62,6 +70,7 @@ module.exports = function (grunt) {
                 files: [
                     '<%= config.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
+                    '.tmp/scripts/{,*/}*.js',
                     '<%= config.app %>/images/{,*/}*'
                 ]
             }
@@ -175,7 +184,17 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
+        coffee: {
+            compile: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/coffee',
+                    src: ['*.coffee'],
+                    dest: '.tmp/scripts',
+                    ext: '.js'
+                }]
+            }
+        },
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -322,12 +341,37 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+            dist_styles: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.app %>/styles',
+                    dest: '<%= config.dist %>/styles',
+                    src: '{,*/}*.css'
+                }]
+            },
+            dist_scripts: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.app %>/scripts',
+                    dest: '<%= config.dist %>/scripts',
+                    src: '{,*/}*.js'
+                }]
+            },
             styles: {
                 expand: true,
                 dot: true,
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            scripts: {
+                expand: true,
+                dot: true,
+                cwd: '<%= config.app %>/scripts',
+                dest: '.tmp/scripts/',
+                src: '{,*/}*.js'
             }
         },
 
@@ -335,14 +379,18 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'sass:server',
-                'copy:styles'
+                'coffee:compile',
+                'copy:styles',
+                'copy:scripts'
             ],
             test: [
-                'copy:styles'
+                'copy:styles',
+                'copy:scripts'
             ],
             dist: [
                 'sass',
                 'copy:styles',
+                'copy:scripts',
                 'imagemin',
                 'svgmin'
             ]
@@ -390,17 +438,19 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'autoprefixer',
         'concat',
-        'cssmin',
-        'uglify',
+        //'cssmin',
+        //'uglify',
         'copy:dist',
+        'copy:dist_styles',
+        'copy:dist_scripts',
         'rev',
         'usemin',
         'htmlmin'
     ]);
 
     grunt.registerTask('default', [
-        'newer:jshint',
-        'test',
+        //'newer:jshint',
+        //'test',
         'build'
     ]);
 };
