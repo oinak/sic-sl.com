@@ -11,6 +11,7 @@
         <meta name="description" content="Servicios Integrales de Comunicación">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
@@ -20,6 +21,8 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic|Open+Sans:700,300italic,300" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -28,39 +31,96 @@
 
 
         <div class="container">
-            <div class="header">
-                <a href="404.html">404 Page</a>
-            </div><!-- .header -->
+          <div class="main">
+            <div id="head">
+              <h1 id='logo'>SIC</h1>
+              <h2 id='name'>
+                Servicios Integrales de Comunicación<br>
+                <span class='motto'>especialiastas en salud y sanidad</span>
+              </h2>
+            </div>
 
-            <div class="main">
-                <h1>Congratulations!</h1>
-                <p>The <code>bourbon-neat</code> generator has given you...</p>
-                <h3><a href="">HTML5 Boilerplate</a></h3>
-                <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-
-                <h3><a href="">Sass</a></h3>
-                <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
-
-                <h3><a href="http://bourbon.io/">Bourbon</a></h3>
-                <p>A simple and lightweight mixin library for Sass.</p>
-
-                <h3><a href="http://neat.bourbon.io/">Neat</a></h3>
-                <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-                <h3><a href="http://necolas.github.io/normalize.css/">Normalize.css</a></h3>
-                <p>A modern, HTML5-ready alternative to CSS resets. Makes browsers render all elements more consistently and in line with modern standards.</p>
-                
-
-                
-
-                <p>Happy coding!</p>
+                <section>
+                  <h3>¿Quiénes somos?</h3>
+                  <p>
+                  Somos una empresa que provee servicios de consultoría
+                  en comunicación, y de representación ante los
+                  medios para entidades empresariales e institucionales
+                  especialmente del ámbito sanitario.</p>
+                  <p>SIC cuenta con
+                  un equipo de periodistas, fotógrafos, especialistas
+                  en tecnologías de la información y en diseño
+                  multimedia. Más de 20 años de experiencia en el
+                  sector nos avalan, pero nuestra principal carta de
+                  presentación es la satisfacción de nuestros numerosos
+                  clientes.</p>
+                </section>
+                <ul class="accordion-tabs-minimal">
+                  <li class="tab-header-and-content">
+                  <a href="#" class="tab-link is-active"><i class='fa fa-puzzle-piece'></i> Consultoría</a>
+                  <div class="tab-content">
+                    <h3>Consultores de Comunicación</h3>
+                    <p>Organizamos eventos y auditamos flujos de trabajo
+                    en empresas y organizaciones que precisan por su
+                    dimensión o complejidad, una asesoría especializada
+                    para mejorar los canales de información tanto
+                    internos como hacia el exterior.</p>
+                  </div>
+                  </li>
+                  <li class="tab-header-and-content">
+                  <a href="#" class="tab-link"><i class='fa fa-newspaper-o'></i> Contenidos</a>
+                  <div class="tab-content">
+                    <h3>Contenidos y Publicaciones</h3>
+                    <p>Generamos contenidos sectoriales o seleccionamos y
+                    filtramos medios especializados para consumo interno
+                    de los clientes o para redifusión.</p>
+                  </div>
+                  </li>
+                  <li class="tab-header-and-content">
+                  <a href="#" class="tab-link"><i class='fa fa-briefcase'></i> Estrategia</a>
+                  <div class="tab-content">
+                    <h3>Servicios a las Empresas</h3>
+                    <p>Diseñamos e implementamos estrategias específicas
+                    para las necesidades concretas de cada cliente,
+                    ajustándonos a sus necesidades y a sus circunstancias
+                    en cada momento.</p>
+                  </div>
+                  </li>
+                  <li class="tab-header-and-content">
+                  <a href="#" class="tab-link"><i class='fa fa-graduation-cap'></i> Formación</a>
+                  <div class="tab-content">
+                    <h3>Relaciones con los Medios</h3>
+                    <p>Formamos directivos y gestores en las relaciones
+                    con los medios de comunicación y su aprovechamiento
+                    como intermediarios de la opinión pública.</p>
+                  </div>
+                  </li>
+                </ul>
             </div><!-- .main -->
-            
-        </div><!-- .container -->
+            <footer class='footer'>
+              <div class="footer-logo">
+                <strong>SIC</strong>
+              </div>
+            <ul>
+              <li>
+              <a href="./team.html">[ <i class='fa fa-user'></i> Equipo ]</a>
+              </li>
+              <li>
+              <a href="./team.html">[ <i class='fa fa-envelope'></i> Contacto ]</a>
+              </li>
+            </ul>
+            <div class='footer-secondary-links'>
+              <ul class='footer-social'>
+                <li>
+                  <a href="http://twitter.com/vegaray">
+                    <i class='fa fa-twitter-square'></i> twitter
+                  </a>
+                </li>
+              </ul>
+            </div>
+            </footer>
 
-        <div class="footer">
-            Brought to you by the brilliant people at <a href="http://koolth.com.au">koolth</a>
-        </div><!-- .footer -->
+        </div><!-- .container -->
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -77,5 +137,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
+        <script type="text/javascript" charset="utf-8" src="scripts/main.js"></script>
     </body>
 </html>

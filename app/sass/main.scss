@@ -1,48 +1,88 @@
 // bower:scss
 @import 'bourbon';
-@import 'neat'; 
-// endbower 
+@import 'neat';
+// endbower
 
 $linkColor: #4183C4;
 $hoverColor: lighten($linkColor, 10);
 $borderColor: #b3b3b3;
+$neuterDark: #666;
+
+$base-font-size: 16px;
+$font-stack: "Open Sans", Helvetica, Helvetica Neue, Arial, sans-serif;
+$heading-font-stack: "Droid Sans", Georgia, Times, serif;
+$heading-color: #008000;
+
+$tablet: new-breakpoint(min-width 768px 12);
+$desktop: new-breakpoint(max-width 960px 12);
 
 body {
-	@include outer-container; 
-	font-family: $helvetica;
-	background-color: #f0f0f0;
+	font-family: $font-stack;
+	@include outer-container;
+	background-color: #ddd;
 }
+h1, h2, h3, strong, b {
+    font-weight: 700;
+}
+h1, h2, h3 {
+    font-family: $heading-font-stack;
+}
+h2, h3 {
+  color: $heading-color;
+  font-family: $heading-font-stack;
+}
+p {
+    font-size: golden-ratio($base-font-size,  0);
+    font-weight: 300;
+}
+
 .container {
-	@include span-columns(8);
-	@include shift(2);
-	@include margin(25px null 25px null);
-	padding: 20px;
-	@include border-top-radius(5px);
-	@include border-bottom-radius(5px);
-	border: 1px solid $borderColor;
-	box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+    @include span-columns(12);
+    @include margin(null null null null);
+	padding: 1em;
+    @include media($tablet){
+        @include span-columns(10);
+        @include shift(1);
+        @include margin(25px null 25px null);
+	    padding: 2em;
+    }
+	box-shadow: 0 4px 8px #666;
 	background-color: white;
 	.main {
 		margin-bottom: 25px;
 	}
 }
-.header {
-	@include span-columns(3);
-	@include shift(9);
-	text-align: right;
-}
-.footer {
-	@include span-columns(12);
-	padding: 10px;
-	font-size: em(14);
-	color: grey;
-	text-align: center;
-	a {
-		color: #0081C6;
-		&:hover {
-			color: $hoverColor;	
-		}
-	}
+#head {
+    @include clearfix;
+    @include row;
+    h1#logo{
+	    font-family: $font-stack;
+        @include span-columns(12);
+        text-align: center;
+        @include media($tablet){
+            @include span-columns(4);
+            text-align: left;
+        }
+        @include margin(0px auto 10px auto);
+        font-size: golden-ratio($base-font-size, 4);
+        color: white;
+        text-align: center;
+        text-shadow: 0px 0px 2px rgba(0,64,0,1), 1px 1px 3px rgba(0,128,0,1);
+    }
+    h2#name{
+        @include span-columns(12);
+        text-align: center;
+        @include media($tablet){
+            @include span-columns(8);
+            text-align: right;
+        }
+        span.motto{
+            color: $neuterDark;
+            font-weight: normal;
+            font-size: 90%;
+            font-style: italic;
+        }
+    }
 }
 a {
 	color: $linkColor;
@@ -56,4 +96,202 @@ h3 {
 }
 p {
 	margin-top: 5px;
+}
+
+// ACCORDION/TABS
+
+.accordion-tabs-minimal {
+  ///////////////////////////////////////////////////////////////////////////////////
+  $base-border-color: gainsboro !default;
+  $base-background-color: white !default;
+  $base-spacing: 1.5em !default;
+  $base-accent-color: #477DCA !default;
+  $base-link-color: $base-accent-color !default;
+  $dark-gray: #333 !default;
+  $medium-screen: em(640) !default;
+  //////////////////////////////////////////////////////////////////////////////////
+
+  $tab-link-color: $dark-gray;
+  $tab-border: 1px solid $base-border-color;
+  $tab-active-background: $base-background-color;
+  $tab-inactive-color: $base-background-color;
+  $tab-inactive-hover-color: silver;
+  $tab-mode: $medium-screen;
+
+  @include clearfix;
+  line-height: 1.5;
+  padding: 0;
+
+  li.tab-header-and-content {
+    list-style: none;
+
+    @include media($tab-mode) {
+      display: inline;
+    }
+  }
+
+  a.tab-link {
+    background-color: $tab-inactive-color;
+    border-top: $tab-border;
+    color: $tab-link-color;
+    display: block;
+    font-weight: 400;
+    padding: ($base-spacing / 2) $gutter;
+    text-decoration: none;
+
+    @include media($tab-mode) {
+      @include inline-block;
+      border-top: 0;
+    }
+
+    &:hover {
+      color: $base-link-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.is-active {
+      border-bottom: 0;
+
+      @include media($tab-mode) {
+        border: $tab-border;
+        border-bottom-color: $tab-active-background;
+        margin-bottom: -1px;
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+    padding: $base-spacing $gutter;
+    width: 100%;
+
+    @include media($tab-mode) {
+      border-top: $tab-border;
+      float: left;
+    }
+  }
+}
+
+// FOOTER
+//
+.footer {
+
+///////////////////////////////////////////////////////////////////////////////////
+  $base-spacing: 1.5em !default;
+  // $base-accent-color: #47CA7D !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+  $footer-background: desaturate(darken($heading-color, 20%), 30%);
+  $footer-color: white;
+  $footer-link-color: transparentize($footer-color, 0.6);
+  $footer-disclaimer-color: transparentize($footer-color, 0.6);
+
+  background: $footer-background;
+  padding: $base-spacing;
+  width: 100%;
+  display: inline-block;
+
+  .footer-logo {
+    color: white;
+    font-size: golden-ratio($base-font-size,  1);
+    margin-right: 1em;
+    margin-bottom: 1em;
+
+    @include media($large-screen) {
+      float: left;
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    margin-bottom: 1em;
+    
+    @include media($large-screen) {
+      float: left;
+      line-height: 1.8em;
+      margin-left: 1em;
+      margin-bottom: 0;
+    }
+  }
+
+  ul li {
+    font-weight: 800;
+    padding-right: 1em;
+
+    @include media($large-screen) {
+      display: inline;
+      text-align: left;
+    }
+  }
+
+  ul li a {
+    color: $footer-link-color;
+
+    &:focus,
+    &:hover {
+      color: transparentize($footer-color, 0);
+    }
+  }
+
+  .footer-secondary-links {
+    @include media($large-screen) {
+      float: right;
+    }
+
+    li {
+      font-size: 0.8em;
+      font-weight: 400;
+    }
+
+    ul.footer-social {
+      margin-top: 1em;
+
+      @include media($large-screen) {
+        float: right;
+        margin-top: 0;
+      }
+
+      li {
+        font-size: 1em;
+        float: left;
+        line-height: 0;
+        padding-right: 0.7em;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      img {
+        height: 1.6em;
+        opacity: 0.7;
+        padding: 1px;
+
+        &:focus,
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
 }
