@@ -10,6 +10,9 @@ Vagrant.configure("2") do |vagrant|
     # otherwise use rails s -b 0.0.0.0 and private ip
     config.vm.network "forwarded_port", guest: 3000, host: 3000
 
+    # livereload
+    config.vm.network "forwarded_port", guest: 35729, host: 35729
+
     config.vm.network "public_network", bridge: 'wlan0'
 
     # http://rvm.io/integration/vagrant
